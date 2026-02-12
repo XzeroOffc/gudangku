@@ -998,7 +998,7 @@ function showPremiumModal(script) {
                     <div class="premium-contact">
                         <p>Hubungi author untuk pembelian:</p>
                         <div class="contact-buttons">
-                            <a href="https://wa.me/6281234567890?text=Saya%20tertarik%20dengan%20script%20${encodeURIComponent(script.title)}" 
+                            <a href="https://wa.me/6283874350954?text=Saya%20tertarik%20dengan%20script%20${encodeURIComponent(script.title)}" 
                                target="_blank" class="btn btn-success">
                                 <i class="fab fa-whatsapp"></i> WhatsApp Author
                             </a>
