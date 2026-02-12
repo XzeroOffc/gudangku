@@ -2,76 +2,7 @@
 let scriptsData = [];
 
 // Data demo awal
-const initialScripts = [
-    {
-        id: 1,
-        title: "WhatsApp MD Bot by Fatur",
-        category: "whatsapp",
-        type: "gratis",
-        description: "Bot WhatsApp Multi Device dengan fitur lengkap: downloader, sticker, group manage, anti spam, dan 200+ fitur lainnya.",
-        author: "Fatur",
-        version: "3.2.1",
-        downloads: 1534,
-        rating: 4.9,
-        tags: ["whatsapp", "multi-device", "nodejs", "baileys"],
-        demo: "https://github.com/fatur/wabot-md",
-        date: "2024-02-15",
-        fileName: "wabot-md-v3.2.1.zip",
-        fileSize: "3.4 MB",
-        uploader: "Fatur"
-    },
-    {
-        id: 2,
-        title: "Telegram Group Manager Pro",
-        category: "telegram",
-        type: "premium",
-        description: "Bot Telegram untuk manage grup dengan fitur anti spam, welcome, afk, warn, ban, mute, dan statistik lengkap.",
-        author: "Rizki",
-        version: "2.0.0",
-        downloads: 856,
-        rating: 4.7,
-        tags: ["telegram", "group-manager", "python", "aiogram"],
-        demo: "https://github.com/rizki/tg-manager",
-        date: "2024-02-10",
-        fileName: "tg-manager-pro.zip",
-        fileSize: "1.8 MB",
-        uploader: "Rizki"
-    },
-    {
-        id: 3,
-        title: "Discord Music Bot",
-        category: "discord",
-        type: "gratis",
-        description: "Bot Discord dengan fitur musik dari YouTube, Spotify, SoundCloud. Support playlist, queue, filter suara.",
-        author: "Cindy",
-        version: "1.5.0",
-        downloads: 2341,
-        rating: 4.8,
-        tags: ["discord", "music", "youtube", "spotify"],
-        demo: "https://github.com/cindy/discord-music",
-        date: "2024-02-05",
-        fileName: "discord-music-bot.js",
-        fileSize: "245 KB",
-        uploader: "Cindy"
-    },
-    {
-        id: 4,
-        title: "Instagram Story Downloader",
-        category: "instagram",
-        type: "gratis",
-        description: "Bot Instagram untuk download story, post, reel, dan IGTV. Support multiple akun.",
-        author: "Budi",
-        version: "1.2.0",
-        downloads: 567,
-        rating: 4.5,
-        tags: ["instagram", "downloader", "python"],
-        demo: "https://github.com/budi/ig-dl",
-        date: "2024-02-01",
-        fileName: "ig-downloader.py",
-        fileSize: "156 KB",
-        uploader: "Budi"
-    }
-];
+const initialScripts = [];
 
 // Inisialisasi data dari localStorage atau pake data demo
 function initData() {
