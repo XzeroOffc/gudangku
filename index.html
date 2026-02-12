@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Gudang Script - Share & Download Script Bot</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link id="theme-style" rel="stylesheet" href="theme-light.css">
+    
+    <!-- Font Awesome 6 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+    <!-- ==================== WELCOME SCREEN ==================== -->
+    <div id="welcomeScreen" class="welcome-screen">
+        <div class="welcome-content">
+            <div class="welcome-logo">
+                <i class="fas fa-code"></i>
+                <h1>Gudang<span>Script</span></h1>
+            </div>
+            
+            <div class="welcome-text">
+                <h2 id="typingText"></h2>
+                <p class="welcome-description">
+                    Tempat berbagi dan download script bot GRATIS! 
+                    Upload script kamu dan dapatkan credits.
+                </p>
+            </div>
+            
+            <div class="welcome-stats">
+                <div class="stat-circle">
+                    <span id="welcomeTotalScripts">0</span>
+                    <p>Total Script</p>
+                </div>
+                <div class="stat-circle">
+                    <span id="welcomeTotalDownloads">0</span>
+                    <p>Downloads</p>
+                </div>
+                <div class="stat-circle">
+                    <span id="welcomeTotalContributors">0</span>
+                    <p>Contributors</p>
+                </div>
+            </div>
+            
+            <div class="welcome-buttons">
+                <button id="enterDashboardBtn" class="btn btn-primary btn-glow">
+                    <i class="fas fa-sign-in-alt"></i> Masuk Dashboard
+                </button>
+                <button id="exploreAsGuestBtn" class="btn btn-outline-light">
+                    <i class="fas fa-globe"></i> Explore Sebagai Tamu
+                </button>
+            </div>
+            
+            <div class="welcome-features">
+                <div class="feature-badge">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>Upload Script</span>
+                </div>
+                <div class="feature-badge">
+                    <i class="fas fa-download"></i>
+                    <span>Download Gratis</span>
+                </div>
+                <div class="feature-badge">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Delete Script</span>
+                </div>
+                <div class="feature-badge">
+                    <i class="fas fa-palette"></i>
+                    <span>Dark/Light Mode</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background Animation -->
+        <div class="welcome-background">
+            <div class="gradient-sphere"></div>
+            <div class="gradient-sphere-2"></div>
+            <div class="floating-code">
+                <i class="fas fa-code"></i>
+                <i class="fas fa-robot"></i>
+                <i class="fas fa-bolt"></i>
+                <i class="fas fa-crown"></i>
+                <i class="fas fa-shield-alt"></i>
+                <i class="fas fa-bug"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN DASHBOARD ==================== -->
+    <div id="mainDashboard" class="main-dashboard hidden">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <i class="fas fa-code"></i>
+                    <h1>Gudang<span>Script</span></h1>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link active" data-page="home">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="#scripts" class="nav-link" data-page="scripts">
+                        <i class="fas fa-code"></i> Scripts
+                    </a>
+                    <a href="#categories" class="nav-link" data-page="categories">
+                        <i class="fas fa-tags"></i> Kategori
+                    </a>
+                    <a href="#upload" class="nav-link" data-page="upload">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload
+                    </a>
+                    <a href="#myuploads" class="nav-link" data-page="myuploads">
+                        <i class="fas fa-user"></i> My Uploads
+                    </a>
+                </div>
+                
+                <div class="nav-actions">
+                    <!-- Theme Switcher -->
+                    <div class="theme-switcher">
+                        <button id="themeToggle" class="theme-btn">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                            <span class="theme-toggle-ball"></span>
+                        </button>
+                    </div>
+                    
+                    <!-- Search -->
+                    <div class="nav-search">
+                        <input type="text" id="searchInput" placeholder="Cari script...">
+                        <button id="searchBtn"><i class="fas fa-search"></i></button>
+                    </div>
+                    
+                    <!-- User Menu -->
+                    <div class="user-menu">
+                        <button id="userMenuBtn" class="user-btn">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="usernameDisplay">Guest</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown hidden">
+                            <div class="user-info">
+                                <i class="fas fa-user-circle"></i>
+                                <div>
+                                    <p id="dropdownUsername">Guest</p>
+                                    <small>Contributor</small>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="#myuploads" class="dropdown-item" data-page="myuploads">
+                                <i class="fas fa-cloud-upload-alt"></i> My Uploads
+                            </a>
+                            <a href="#" id="logoutBtn" class="dropdown-item">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Hamburger -->
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden">
+            <div class="mobile-menu-header">
+                <div class="mobile-user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <p id="mobileUsername">Guest</p>
+                        <small>Contributor</small>
+                    </div>
+                </div>
+                <button class="mobile-menu-close">&times;</button>
+            </div>
+            <div class="mobile-menu-links">
+                <a href="#home" class="mobile-link active" data-page="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="#scripts" class="mobile-link" data-page="scripts">
+                    <i class="fas fa-code"></i> Scripts
+                </a>
+                <a href="#categories" class="mobile-link" data-page="categories">
+                    <i class="fas fa-tags"></i> Kategori
+                </a>
+                <a href="#upload" class="mobile-link" data-page="upload">
+                    <i class="fas fa-cloud-upload-alt"></i> Upload
+                </a>
+                <a href="#myuploads" class="mobile-link" data-page="myuploads">
+                    <i class="fas fa-user"></i> My Uploads
+                </a>
+            </div>
+            <div class="mobile-menu-footer">
+                <button id="mobileThemeToggle" class="mobile-theme-btn">
+                    <i class="fas fa-palette"></i> Ganti Tema
+                </button>
+                <button id="mobileLogoutBtn" class="mobile-logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- ==================== PAGE CONTAINER ==================== -->
+        <div id="pageContainer" class="page-container">
+            <!-- HOME PAGE -->
+            <div id="homePage" class="page active-page">
+                <!-- Hero Section -->
+                <section class="hero">
+                    <div class="container">
+                        <div class="hero-content animate-on-scroll">
+                            <div class="hero-badge">
+                                <span class="live-badge">
+                                    <i class="fas fa-circle"></i> LIVE
+                                </span>
+                                <span class="version-badge">v2.0.0</span>
+                            </div>
+                            <h2 class="hero-title">
+                                <span class="gradient-text">Gudang Script</span>
+                                <br>Untuk Semua Bot
+                            </h2>
+                            <p class="hero-description">
+                                Tempat berbagi dan download script bot GRATIS! 
+                                Upload script kamu dan dapatkan credits.
+                            </p>
+                            <div class="hero-buttons">
+                                <a href="#scripts" class="btn btn-primary btn-pulse" data-page="scripts">
+                                    <i class="fas fa-book"></i> Lihat Script
+                                </a>
+                                <a href="#upload" class="btn btn-outline-primary" data-page="upload">
+                                    <i class="fas fa-upload"></i> Upload Script
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-stats animate-on-scroll">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 id="homeTotalScripts">0</h3>
+                                    <p>Total Script</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 id="homeTotalDownloads">0</h3>
+                                    <p>Downloads</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 id="homeTotalContributors">0</h3>
+                                    <p>Contributors</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Background Animation -->
+                    <div class="hero-background">
+                        <div class="gradient-orb"></div>
+                        <div class="gradient-orb-2"></div>
+                        <div class="gradient-orb-3"></div>
+                    </div>
+                </section>
+
+                <!-- Trending Scripts Preview -->
+                <section class="trending-preview">
+                    <div class="container">
+                        <div class="section-header animate-on-scroll">
+                            <h2>🔥 Trending Scripts</h2>
+                            <p>Script paling populer minggu ini</p>
+                        </div>
+                        <div class="preview-grid" id="trendingPreview">
+                            <!-- Trending cards akan diisi JS -->
+                        </div>
+                        <div class="section-footer animate-on-scroll">
+                            <a href="#scripts" class="btn btn-link" data-page="scripts">
+                                Lihat Semua Script <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Features Section -->
+                <section class="features">
+                    <div class="container">
+                        <div class="section-header animate-on-scroll">
+                            <h2>✨ Fitur Gudang Script</h2>
+                            <p>Semua yang kamu butuhkan untuk berbagi script</p>
+                        </div>
+                        <div class="features-grid">
+                            <div class="feature-card animate-on-scroll">
+                                <div class="feature-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <h3>Upload Mudah</h3>
+                                <p>Upload script dengan form yang simple dan cepat</p>
+                            </div>
+                            <div class="feature-card animate-on-scroll">
+                                <div class="feature-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <h3>Download Gratis</h3>
+                                <p>Download ribuan script bot secara gratis</p>
+                            </div>
+                            <div class="feature-card animate-on-scroll">
+                                <div class="feature-icon">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                                <h3>Delete Script</h3>
+                                <p>Hapus script kamu kapan saja dengan mudah</p>
+                            </div>
+                            <div class="feature-card animate-on-scroll">
+                                <div class="feature-icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <h3>Dark/Light Mode</h3>
+                                <p>Ganti tema sesuai kenyamanan mata kamu</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="cta-section">
+                    <div class="container">
+                        <div class="cta-content animate-on-scroll">
+                            <h2>Siap Upload Script Kamu?</h2>
+                            <p>Gabung dengan 2000+ contributor lainnya dan bagikan script bot kamu!</p>
+                            <a href="#upload" class="btn btn-primary btn-lg" data-page="upload">
+                                <i class="fas fa-cloud-upload-alt"></i> Upload Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SCRIPTS PAGE -->
+            <div id="scriptsPage" class="page">
+                <section class="scripts-section">
+                    <div class="container">
+                        <div class="page-header animate-on-scroll">
+                            <h1>📚 Semua Script</h1>
+                            <p>Jelajahi koleksi script bot dari berbagai kategori</p>
+                        </div>
+                        
+                        <!-- Filter Buttons -->
+                        <div class="filter-wrapper animate-on-scroll">
+                            <div class="filter-header">
+                                <h3><i class="fas fa-filter"></i> Filter Script</h3>
+                                <button id="resetFilterBtn" class="btn btn-sm btn-outline">
+                                    <i class="fas fa-undo"></i> Reset
+                                </button>
+                            </div>
+                            <div class="filter-buttons" id="filterButtons">
+                                <!-- Filter akan diisi JS -->
+                            </div>
+                        </div>
+
+                        <!-- Scripts Grid -->
+                        <div class="scripts-grid" id="scriptsGrid">
+                            <!-- Script cards akan diisi JS -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- CATEGORIES PAGE -->
+            <div id="categoriesPage" class="page">
+                <section class="categories-section">
+                    <div class="container">
+                        <div class="page-header animate-on-scroll">
+                            <h1>🏷️ Kategori Script</h1>
+                            <p>Pilih kategori script yang kamu butuhkan</p>
+                        </div>
+                        
+                        <div class="category-grid-enhanced" id="categoryGrid">
+                            <!-- Categories akan diisi JS -->
+                        </div>
+                        
+                        <!-- Popular Categories Stats -->
+                        <div class="category-stats animate-on-scroll">
+                            <h3>Statistik Kategori</h3>
+                            <div class="stats-bars" id="categoryStats">
+                                <!-- Stats bars akan diisi JS -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- UPLOAD PAGE -->
+            <div id="uploadPage" class="page">
+                <section class="upload-section">
+                    <div class="container">
+                        <div class="page-header animate-on-scroll">
+                            <h1>📤 Upload Script</h1>
+                            <p>Bagikan script bot kamu ke komunitas</p>
+                        </div>
+                        
+                        <div class="upload-container animate-on-scroll">
+                            <form id="uploadForm" class="upload-form">
+                                <div class="form-progress">
+                                    <div class="progress-step active" data-step="1">
+                                        <span class="step-number">1</span>
+                                        <span class="step-label">Informasi Dasar</span>
+                                    </div>
+                                    <div class="progress-step" data-step="2">
+                                        <span class="step-number">2</span>
+                                        <span class="step-label">Detail Script</span>
+                                    </div>
+                                    <div class="progress-step" data-step="3">
+                                        <span class="step-number">3</span>
+                                        <span class="step-label">Upload File</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Step 1: Basic Info -->
+                                <div class="form-step active" id="step1">
+                                    <div class="form-group">
+                                        <label for="scriptName">Nama Script <span class="required">*</span></label>
+                                        <input type="text" id="scriptName" placeholder="Contoh: WhatsApp Multi Device Bot" required>
+                                        <small class="form-hint">Beri nama yang jelas dan mudah diingat</small>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="scriptCategory">Kategori <span class="required">*</span></label>
+                                        <select id="scriptCategory" required>
+                                            <option value="">Pilih Kategori</option>
+                                            <option value="whatsapp">WhatsApp Bot</option>
+                                            <option value="telegram">Telegram Bot</option>
+                                            <option value="discord">Discord Bot</option>
+                                            <option value="instagram">Instagram Bot</option>
+                                            <option value="facebook">Facebook Bot</option>
+                                            <option value="twitter">Twitter Bot</option>
+                                            <option value="tiktok">TikTok Bot</option>
+                                            <option value="line">LINE Bot</option>
+                                            <option value="others">Lainnya</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="scriptDescription">Deskripsi <span class="required">*</span></label>
+                                        <textarea id="scriptDescription" rows="4" placeholder="Jelaskan fitur dan fungsi script bot ini..." required></textarea>
+                                        <small class="form-hint">Minimal 20 karakter</small>
+                                    </div>
+                                    
+                                    <button type="button" class="btn btn-primary next-step btn-block">
+                                        Selanjutnya <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Step 2: Details -->
+                                <div class="form-step" id="step2">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="scriptVersion">Versi</label>
+                                            <input type="text" id="scriptVersion" placeholder="1.0.0">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="scriptAuthor">Author/Nama Kamu <span class="required">*</span></label>
+                                            <input type="text" id="scriptAuthor" placeholder="Nama kamu" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="scriptTags">Tags (pisahkan dengan koma)</label>
+                                        <input type="text" id="scriptTags" placeholder="bot, wa, multipurpose, md">
+                                        <small class="form-hint">Contoh: wa, bot, downloader, sticker</small>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="scriptDemo">Link Demo/Repository</label>
+                                        <input type="url" id="scriptDemo" placeholder="https://github.com/username/repo">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="isPremium">
+                                            <span class="checkbox-custom"></span>
+                                            Tandai sebagai Script Premium (Berbayar)
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="form-buttons">
+                                        <button type="button" class="btn btn-outline prev-step">
+                                            <i class="fas fa-arrow-left"></i> Kembali
+                                        </button>
+                                        <button type="button" class="btn btn-primary next-step">
+                                            Selanjutnya <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Step 3: File Upload -->
+                                <div class="form-step" id="step3">
+                                    <div class="form-group">
+                                        <label for="scriptFile">File Script <span class="required">*</span></label>
+                                        <div class="file-upload-enhanced">
+                                            <input type="file" id="scriptFile" accept=".js,.py,.php,.zip,.rar,.txt,.json" required>
+                                            <div class="file-upload-area">
+                                                <i class="fas fa-cloud-upload-alt"></i>
+                                                <p>Drag & drop file disini atau <span>klik untuk browse</span></p>
+                                                <span class="file-hint">Support: .js, .py, .php, .zip, .rar, .txt, .json (Max 50MB)</span>
+                                            </div>
+                                            <div class="file-info hidden">
+                                                <i class="fas fa-file-code"></i>
+                                                <div>
+                                                    <p id="fileName">filename.js</p>
+                                                    <span id="fileSize">1.2 MB</span>
+                                                </div>
+                                                <button type="button" class="btn-remove-file">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="agreeTerms" required>
+                                            <span class="checkbox-custom"></span>
+                                            Saya setuju dengan syarat dan ketentuan <span class="required">*</span>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="form-buttons">
+                                        <button type="button" class="btn btn-outline prev-step">
+                                            <i class="fas fa-arrow-left"></i> Kembali
+                                        </button>
+                                        <button type="submit" class="btn btn-primary btn-pulse">
+                                            <i class="fas fa-cloud-upload-alt"></i> Upload Script
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Upload Guidelines -->
+                        <div class="upload-guidelines animate-on-scroll">
+                            <h4><i class="fas fa-info-circle"></i> Panduan Upload</h4>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Pastikan script adalah karya sendiri atau memiliki izin</li>
+                                <li><i class="fas fa-check-circle"></i> Berikan deskripsi yang jelas dan informatif</li>
+                                <li><i class="fas fa-check-circle"></i> Jangan upload script berbahaya (virus, malware)</li>
+                                <li><i class="fas fa-check-circle"></i> Script premium wajib mencantumkan harga</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- MY UPLOADS PAGE -->
+            <div id="myuploadsPage" class="page">
+                <section class="myuploads-section">
+                    <div class="container">
+                        <div class="page-header animate-on-scroll">
+                            <h1>📦 My Uploads</h1>
+                            <p>Script yang pernah kamu upload</p>
+                        </div>
+                        
+                        <div class="myuploads-stats animate-on-scroll">
+                            <div class="stat-mini-card">
+                                <i class="fas fa-code"></i>
+                                <div>
+                                    <h3 id="myUploadsCount">0</h3>
+                                    <p>Total Script</p>
+                                </div>
+                            </div>
+                            <div class="stat-mini-card">
+                                <i class="fas fa-download"></i>
+                                <div>
+                                    <h3 id="myDownloadsCount">0</h3>
+                                    <p>Total Downloads</p>
+                                </div>
+                            </div>
+                            <div class="stat-mini-card">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <h3 id="myRatingAvg">0</h3>
+                                    <p>Rating Rata-rata</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="myuploads-grid" id="myUploadsGrid">
+                            <!-- My uploads akan diisi JS -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-brand">
+                            <i class="fas fa-code"></i>
+                            <h3>Gudang<span>Script</span></h3>
+                        </div>
+                        <p>Tempat berbagi script bot terpercaya. Upload, download, dan delete script dengan bebas!</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-discord"></i></a>
+                            <a href="#"><i class="fab fa-telegram"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Navigasi</h4>
+                        <ul>
+                            <li><a href="#home" data-page="home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="#scripts" data-page="scripts"><i class="fas fa-chevron-right"></i> Scripts</a></li>
+                            <li><a href="#categories" data-page="categories"><i class="fas fa-chevron-right"></i> Kategori</a></li>
+                            <li><a href="#upload" data-page="upload"><i class="fas fa-chevron-right"></i> Upload</a></li>
+                            <li><a href="#myuploads" data-page="myuploads"><i class="fas fa-chevron-right"></i> My Uploads</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Statistik</h4>
+                        <ul>
+                            <li id="footerTotalScripts"><i class="fas fa-code"></i> Total Script: 0</li>
+                            <li id="footerTotalDownloads"><i class="fas fa-download"></i> Total Download: 0</li>
+                            <li id="footerTotalUsers"><i class="fas fa-users"></i> Contributors: 0</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Info Kontak</h4>
+                        <ul>
+                            <li><i class="fas fa-envelope"></i> support@gudangscript.id</li>
+                            <li><i class="fas fa-phone"></i> +62 812 3456 7890</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Gudang Script. Open source untuk semua.</p>
+                    <div class="footer-links">
+                        <a href="#" id="backToWelcomeBtn">
+                            <i class="fas fa-arrow-left"></i> Kembali ke Welcome
+                        </a>
+                        <a href="#" id="resetDataLink">
+                            <i class="fas fa-rotate-left"></i> Reset Demo Data
+                        </a>
+                        <a href="#" id="privacyLink">Privacy</a>
+                        <a href="#" id="termsLink">Terms</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <div class="spinner-circle"></div>
+            <div class="spinner-circle-2"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
