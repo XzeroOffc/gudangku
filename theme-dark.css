@@ -1,0 +1,112 @@
+:root {
+    --primary-color: #818cf8;
+    --secondary-color: #a78bfa;
+    --accent-color: #fbbf24;
+    --success-color: #34d399;
+    --warning-color: #fbbf24;
+    --danger-color: #f87171;
+    --info-color: #60a5fa;
+    
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-gradient: linear-gradient(135deg, #1e1b4b 0%, #2e1065 100%);
+    
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    
+    --border-color: #334155;
+    --card-bg: #1e293b;
+    --navbar-bg: rgba(15, 23, 42, 0.95);
+    
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+body::before {
+    background: rgba(15, 23, 42, 0.98);
+}
+
+.navbar {
+    background: var(--navbar-bg);
+    backdrop-filter: blur(10px);
+}
+
+.nav-link {
+    color: var(--text-primary);
+}
+
+.nav-search input {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.script-card {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.script-footer {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+.upload-container {
+    background: var(--card-bg);
+}
+
+.category-card-enhanced {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.stat-card {
+    background: var(--card-bg);
+}
+
+.filter-wrapper {
+    background: var(--card-bg);
+}
+
+.empty-state {
+    background: var(--card-bg);
+}
+
+.notification {
+    background: var(--card-bg);
+    color: var(--text-primary);
+}
+
+.modal-content {
+    background: var(--card-bg);
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.file-upload-area {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+.file-info {
+    background: var(--bg-secondary);
+}
+
+.feature-card {
+    background: var(--card-bg);
+}
